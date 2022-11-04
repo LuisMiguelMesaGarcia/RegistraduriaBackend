@@ -35,6 +35,12 @@ def getCandidatos():
     return jsonify(json)
 
 
+@app.route("/candidatos/<string:id>/partido/<string:id_partido>", methods=['PUT'])
+def asignarPartidoACandidatos(id,id_partido):
+ json=miControladorCandidato.asignarPartido(id,id_partido)
+ return jsonify(json)
+
+
 @app.route("/candidatos",methods=['POST'])
 def crearCandidato():
     data = request.get_json()
@@ -104,7 +110,7 @@ def getPartidos():
     return jsonify(json)
 
 
-@app.route("/partidos",methods=['POST'])
+@app.route("/partidos", methods=['POST'])
 def crearPartido():
     data = request.get_json()
     json=miControladorPartido.create(data)
